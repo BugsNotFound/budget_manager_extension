@@ -1,2 +1,2 @@
 # Budget-Manager-Extensionr-
-This extension helps one to manages his budget. 
+This extension helps one to manage his budget. 
