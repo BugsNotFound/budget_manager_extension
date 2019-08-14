@@ -1,6 +1,6 @@
 var contextMenuItem = {
     "id": "SpendMoney",
-    "title": "SpendMoney",
+    "title": "Spend Money",
     "contexts": ["selection"]
 };
 
@@ -14,16 +14,15 @@ function isInt(value) {
 
 chrome.contextMenus.onClicked.addListener(function(clickedData) {
     if (clickedData.menuItemId == "SpendMoney" && clickedData.selectionText) {
-        if (isInt(clickedData.selectionText)) {
+        if (isInt((clickedData.selectionText).split(',').join(''))) {
             chrome.storage.sync.get(["total", "limit"], function(budget) {
                 var newTotal = 0;
                 if (budget.total) {
                     newTotal += parseInt(budget.total);
                 }
 
-
-
                 newTotal += parseInt((clickedData.selectionText).split(',').join(''));
+
 
                 chrome.storage.sync.set({ "total": newTotal }, function() {
                     if (newTotal >= budget.limit) {
